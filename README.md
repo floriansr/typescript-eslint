@@ -2,13 +2,13 @@
 
 ## Getting Started
 
-First, deploy TypeScript React App:
+We want deploy TypeScript into any Next React App:
 
 ```bash
 npx create-next-app .
 ```
 
-Install eslint & prettier packages
+Install eslint & prettier & typescript packages
 
 ```bash
 npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-simple-import-sort eslint-plugin-react-hooks eslint-plugin-react eslint-plugin-jsx-a11y  typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser @types/react @types/node
