@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-First, deploy Next React App:
+First, deploy TypeScript React App:
 
 ```bash
 npx create-next-app .
@@ -11,7 +11,7 @@ npx create-next-app .
 Install eslint & prettier packages
 
 ```bash
-npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-simple-import-sort eslint-plugin-react-hooks eslint-plugin-react eslint-plugin-jsx-a11y
+npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-simple-import-sort eslint-plugin-react-hooks eslint-plugin-react eslint-plugin-jsx-a11y  typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser @types/react @types/node
 ```
 
 Making the config files
@@ -26,16 +26,24 @@ We need for telling eslint and prettier not to target certain files and folder
 touch .eslintignore .prettierignore
 ```
 
+Create an empty tsconfig.json
+
+```bash
+touch tsconfig.json
+```
+
 Add the following to both files
 
 ```bash
 node_modules
+.next
 ```
 
 Add eslint config
 ```bash
 module.exports = {
   root: true, // Make sure eslint picks up the config at the root of the directory
+  parser: '@typescript-eslint/parser',
   plugins: ['simple-import-sort'], // Order of your import statements
   parserOptions: {
     ecmaVersion: 2020, // Use the latest ecmascript standard
@@ -58,12 +66,15 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'prettier/@typescript-eslint',
     'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
   ],
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
     'react/react-in-jsx-scope': 'off',
     'simple-import-sort/sort': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
@@ -72,9 +83,10 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton']
       }
     ],
-    'react/prop-types': ['off']
+    'react/prop-types': ['error']
   }
 };
+
 
 ```
 
@@ -100,7 +112,12 @@ Add scripts to package.json
   },
 ```
 
-Run linter if autosave option is disabled
+For populate .tsconfig.json and create next.config file for TS, you need to start server
+```bash
+npm run dev
+```
+
+Then run linter if autosave option is disabled
 ```bash
 npm run lint
 ```
