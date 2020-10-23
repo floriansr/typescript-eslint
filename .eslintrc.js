@@ -1,5 +1,6 @@
 module.exports = {
   root: true, // Make sure eslint picks up the config at the root of the directory
+  parser: '@typescript-eslint/parser',
   plugins: ['simple-import-sort'], // Order of your import statements
   parserOptions: {
     ecmaVersion: 2020, // Use the latest ecmascript standard
@@ -22,12 +23,15 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'prettier/@typescript-eslint',
     'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
   ],
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
     'react/react-in-jsx-scope': 'off',
     'simple-import-sort/sort': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
@@ -36,6 +40,6 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton']
       }
     ],
-    'react/prop-types': ['off']
+    'react/prop-types': ['error']
   }
 };
